@@ -1,0 +1,68 @@
+package com.example.android.popularmoviesstage1;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.example.android.popularmoviesstage1.data.Movie;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
+/**
+ * Created by God on 7/28/2017.
+ */
+
+public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.ViewHolder> {
+    private LayoutInflater mInflater;
+    private ItemClickListener mClickListener;
+    private ArrayList<Movie> mData;
+    private Context context;
+
+    public PosterAdapter(Context context, ArrayList<Movie> movies) {
+        mInflater = LayoutInflater.from(context);
+        this.context = context;
+        mData = movies;
+    }
+
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnClickListener(ItemClickListener cl) {
+        mClickListener = cl;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = mInflater.inflate(R.layout.single_poster_activity, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.bind(position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mData.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView mImageView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            mImageView = (ImageView) itemView.findViewById(R.id.poster_image_view);
+        }
+
+        public void bind(int position) {
+            Picasso.with(context).load(mData.get(position).getDetailImagePath()).into(mImageView);
+        }
+    }
+}
