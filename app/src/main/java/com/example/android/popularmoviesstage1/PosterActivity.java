@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.android.popularmoviesstage1.data.Movie;
 import com.example.android.popularmoviesstage1.utilities.JSONUtils;
@@ -24,12 +25,14 @@ public class PosterActivity extends AppCompatActivity {
     RecyclerView posters;
     ProgressBar mProgressBar;
     String fetchUrl = NetworkUtils.MOST_POPULAR_QUERY;
+    TextView mHeaderView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poster);
 
         mProgressBar = (ProgressBar) findViewById(R.id.loading_progress_bar);
+        mHeaderView = (TextView) findViewById(R.id.header_text_view);
 
         posters = (RecyclerView) findViewById(R.id.posters_recycler_view);
         posters.setLayoutManager(new GridLayoutManager(this, 3));
@@ -50,10 +53,12 @@ public class PosterActivity extends AppCompatActivity {
 
         if (id == R.id.top_rated_item) {
             fetchUrl = NetworkUtils.HIGHEST_RATED_QUERY;
+            mHeaderView.setText(R.string.top_rated_header);
             new FetchDataTask().execute();
             return true;
         } else if (id == R.id.most_popular_item) {
             fetchUrl = NetworkUtils.MOST_POPULAR_QUERY;
+            mHeaderView.setText(R.string.most_popular_header);
             new FetchDataTask().execute();
             return true;
         }
