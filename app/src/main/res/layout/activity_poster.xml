@@ -5,6 +5,7 @@
     <TextView
         android:id="@+id/header_text_view"
         android:layout_width="wrap_content"
+        android:paddingTop="5dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/most_popular_header"
