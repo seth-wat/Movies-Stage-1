@@ -1,5 +1,8 @@
 package com.example.android.popularmoviesstage1.utilities;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.example.android.popularmoviesstage1.data.ApiKey;
@@ -55,6 +58,12 @@ public final class NetworkUtils {
         }
         return response.toString();
 
+    }
+
+    public static boolean hasInternet(Context context) {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
 }
