@@ -26,6 +26,7 @@ public class PosterActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
     String fetchUrl = NetworkUtils.MOST_POPULAR_QUERY;
     TextView mHeaderView;
+    TextView mErrorView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class PosterActivity extends AppCompatActivity {
 
         mProgressBar = (ProgressBar) findViewById(R.id.loading_progress_bar);
         mHeaderView = (TextView) findViewById(R.id.header_text_view);
+        mErrorView = (TextView) findViewById(R.id.error_text_view);
 
         posters = (RecyclerView) findViewById(R.id.posters_recycler_view);
         posters.setLayoutManager(new GridLayoutManager(this, 3));
@@ -82,6 +84,10 @@ public class PosterActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<Movie> movies) {
             mProgressBar.setVisibility(View.INVISIBLE);
+            if (movies.isEmpty()) {
+                mErrorView.setVisibility(View.VISIBLE);
+                return;
+            }
             Log.i(LOG_TAG, "onPostExecute is running =)");
             for (int i = 0; i < movies.size(); i++) {
                 Movie movie = movies.get(i);
