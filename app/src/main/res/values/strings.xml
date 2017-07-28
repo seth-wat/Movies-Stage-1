@@ -3,4 +3,6 @@
     <string name="error_msg">There was a problem loading content, please check your internet connection.</string>
     <string name="most_popular_header">Most Popular Movies</string>
     <string name="top_rated_header">Top Rated Movies</string>
+    <string name="item_top_rated">Top Rated</string>
+    <string name="item_most_popluar">Most Popular</string>
 </resources>
