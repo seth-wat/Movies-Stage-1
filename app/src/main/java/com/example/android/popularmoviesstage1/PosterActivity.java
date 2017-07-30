@@ -61,8 +61,8 @@ public class PosterActivity extends AppCompatActivity implements PosterAdapter.I
             intent.putExtra("title", movieData.get(position).getTitle());
             intent.putExtra("detailImage", movieData.get(position).getDetailImagePath());
             intent.putExtra("plotSynopsis", movieData.get(position).getPlotSynopsis());
-            intent.putExtra("userRating", movieData.get(position).getUserRating());
-            intent.putExtra("releaseDate", movieData.get(position).getUserRating());
+            intent.putExtra("releaseDate", movieData.get(position).getReleaseDate());
+            intent.putExtra("userRating", movieData.get(position).getUserRating() + "");
             startActivity(intent);
         }
     }
