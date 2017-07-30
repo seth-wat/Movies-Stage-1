@@ -38,9 +38,11 @@ public class PosterActivity extends AppCompatActivity {
 
         posters = (RecyclerView) findViewById(R.id.posters_recycler_view);
         posters.setLayoutManager(new GridLayoutManager(this, 3));
-
-
-        new FetchDataTask().execute();
+        if (NetworkUtils.hasInternet(this)) {
+            new FetchDataTask().execute();
+        } else {
+            mErrorView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -56,12 +58,20 @@ public class PosterActivity extends AppCompatActivity {
         if (id == R.id.top_rated_item) {
             fetchUrl = NetworkUtils.HIGHEST_RATED_QUERY;
             mHeaderView.setText(R.string.top_rated_header);
-            new FetchDataTask().execute();
+            if (NetworkUtils.hasInternet(this)) {
+                new FetchDataTask().execute();
+            } else {
+                mErrorView.setVisibility(View.VISIBLE);
+            }
             return true;
         } else if (id == R.id.most_popular_item) {
             fetchUrl = NetworkUtils.MOST_POPULAR_QUERY;
             mHeaderView.setText(R.string.most_popular_header);
-            new FetchDataTask().execute();
+            if (NetworkUtils.hasInternet(this)) {
+                new FetchDataTask().execute();
+            } else {
+                mErrorView.setVisibility(View.VISIBLE);
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
