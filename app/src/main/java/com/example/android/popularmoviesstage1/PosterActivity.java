@@ -1,5 +1,6 @@
 package com.example.android.popularmoviesstage1;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,7 +57,13 @@ public class PosterActivity extends AppCompatActivity implements PosterAdapter.I
     @Override
     public void onItemClick(View view, int position) {
         if (movieData != null) {
-            Toast.makeText(this, "You just clicked " + position, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, detail.class);
+            intent.putExtra("title", movieData.get(position).getTitle());
+            intent.putExtra("detailImage", movieData.get(position).getDetailImagePath());
+            intent.putExtra("plotSynopsis", movieData.get(position).getPlotSynopsis());
+            intent.putExtra("userRating", movieData.get(position).getUserRating());
+            intent.putExtra("releaseDate", movieData.get(position).getUserRating());
+            startActivity(intent);
         }
     }
 
