@@ -7,11 +7,6 @@ package com.example.android.popularmoviesstage1.data;
 public class Movie {
     private String title;
     private String thumbnailPath;
-
-    public String getDetailImagePath() {
-        return detailImagePath;
-    }
-
     private String detailImagePath;
     private String plotSynopsis;
     private double userRating;
@@ -35,6 +30,10 @@ public class Movie {
 
     public String getThumbnailPath() {
         return thumbnailPath;
+    }
+
+    public String getDetailImagePath() {
+        return detailImagePath;
     }
 
     public String getPlotSynopsis() {
