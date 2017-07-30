@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.popularmoviesstage1.data.Movie;
 import com.example.android.popularmoviesstage1.utilities.JSONUtils;
@@ -54,6 +55,7 @@ public class PosterActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        Toast errorToast = Toast.makeText(this, R.string.error_msg, Toast.LENGTH_LONG);
 
         if (id == R.id.top_rated_item) {
             fetchUrl = NetworkUtils.HIGHEST_RATED_QUERY;
@@ -61,7 +63,7 @@ public class PosterActivity extends AppCompatActivity {
             if (NetworkUtils.hasInternet(this)) {
                 new FetchDataTask().execute();
             } else {
-                mErrorView.setVisibility(View.VISIBLE);
+                errorToast.show();
             }
             return true;
         } else if (id == R.id.most_popular_item) {
@@ -70,7 +72,7 @@ public class PosterActivity extends AppCompatActivity {
             if (NetworkUtils.hasInternet(this)) {
                 new FetchDataTask().execute();
             } else {
-                mErrorView.setVisibility(View.VISIBLE);
+                errorToast.show();
             }
             return true;
         }
