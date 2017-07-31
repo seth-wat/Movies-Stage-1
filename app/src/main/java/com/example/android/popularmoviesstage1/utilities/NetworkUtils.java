@@ -26,8 +26,8 @@ public final class NetworkUtils {
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     //Only returns results with at least 100 users votes, other wise data set is full of obscure movies.
-    public static final String MOST_POPULAR_QUERY = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&vote_count.gte=100&api_key=" + ApiKey.API_KEY;
-    public static final String HIGHEST_RATED_QUERY = "https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&vote_count.gte=100&api_key=" + ApiKey.API_KEY;
+    public static final String MOST_POPULAR_QUERY = "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=" + ApiKey.API_KEY;
+    public static final String HIGHEST_RATED_QUERY = "https://api.themoviedb.org/3/movie/top_rated?page=1&language=en-US&api_key=" + ApiKey.API_KEY;
 
     public static URL urlFromString(String url) {
         try {
