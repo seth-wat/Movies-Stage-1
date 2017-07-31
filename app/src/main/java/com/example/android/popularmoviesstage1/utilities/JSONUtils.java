@@ -17,7 +17,7 @@ public final class JSONUtils {
         if (rawData.isEmpty()) {
             return null;
         }
-        ArrayList<Movie>listOfMovies = new ArrayList<Movie>();
+        ArrayList<Movie> listOfMovies = new ArrayList<Movie>();
         try {
             JSONObject root = new JSONObject(rawData);
             JSONArray results = root.getJSONArray("results");

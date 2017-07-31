@@ -25,6 +25,7 @@ import java.util.Scanner;
 public final class NetworkUtils {
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
+    //Only returns results with at least 100 users votes, other wise data set is full of obscure movies.
     public static final String MOST_POPULAR_QUERY = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&vote_count.gte=100&api_key=" + ApiKey.API_KEY;
     public static final String HIGHEST_RATED_QUERY = "https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&vote_count.gte=100&api_key=" + ApiKey.API_KEY;
 
@@ -32,7 +33,7 @@ public final class NetworkUtils {
         try {
             return new URL(url);
         } catch (MalformedURLException e) {
-            Log.i(LOG_TAG, "The URL is malformed", e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -43,7 +44,7 @@ public final class NetworkUtils {
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            InputStreamReader isR =  new InputStreamReader(urlConnection.getInputStream(), Charset.forName("UTF-8"));
+            InputStreamReader isR = new InputStreamReader(urlConnection.getInputStream(), Charset.forName("UTF-8"));
             BufferedReader br = new BufferedReader(isR);
             String line = br.readLine();
             while (line != null) {
@@ -51,7 +52,7 @@ public final class NetworkUtils {
                 line = br.readLine();
             }
         } catch (IOException e) {
-            Log.i(LOG_TAG, "Failed to get HttpURLConnection object / get the InputStream", e);
+            e.printStackTrace();
             return response.toString();
         } finally {
             if (urlConnection != null) urlConnection.disconnect();

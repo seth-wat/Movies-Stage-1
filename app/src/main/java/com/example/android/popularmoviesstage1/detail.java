@@ -28,8 +28,10 @@ public class detail extends AppCompatActivity {
         mTitleTextView.setText(mIntent.getStringExtra("title"));
         Picasso.with(this).load(mIntent.getStringExtra("detailImage")).into(mImageView);
         mSynopsisTextView.setText(mIntent.getStringExtra("plotSynopsis"));
-        mReleaseDateTextView.setText("Release Date: " + mIntent.getStringExtra("releaseDate"));
-        mUserRatingTextView.setText("Average Rating: " + mIntent.getStringExtra("userRating"));
+        String releaseDate = "Release Date: " + mIntent.getStringExtra("releaseDate");
+        mReleaseDateTextView.setText(releaseDate);
+        String userRating = "Average Rating: " + mIntent.getStringExtra("userRating");
+        mUserRatingTextView.setText(userRating);
 
 
     }

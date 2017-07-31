@@ -8,7 +8,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -31,6 +30,7 @@ public class PosterActivity extends AppCompatActivity implements PosterAdapter.I
     TextView mErrorView;
     Toast errorToast;
     ArrayList<Movie> movieData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +45,6 @@ public class PosterActivity extends AppCompatActivity implements PosterAdapter.I
         posters.setLayoutManager(new GridLayoutManager(this, 3));
 
         if (NetworkUtils.hasInternet(this)) {
-            Log.i(LOG_TAG, "............We have internet");
-            Log.i(LOG_TAG, "FetchDataTask is about to execute");
             new FetchDataTask().execute();
         } else {
             mErrorView.setVisibility(View.VISIBLE);
@@ -103,7 +101,7 @@ public class PosterActivity extends AppCompatActivity implements PosterAdapter.I
     }
 
 
-    public class FetchDataTask extends AsyncTask<Void, Void, ArrayList<Movie>> {
+    private class FetchDataTask extends AsyncTask<Void, Void, ArrayList<Movie>> {
         @Override
         protected ArrayList<Movie> doInBackground(Void... params) {
             errorToast.cancel();
@@ -125,16 +123,10 @@ public class PosterActivity extends AppCompatActivity implements PosterAdapter.I
             } else {
                 mErrorView.setVisibility(View.INVISIBLE);
             }
-            Log.i(LOG_TAG, "onPostExecute is running =)");
-            for (int i = 0; i < movies.size(); i++) {
-                Movie movie = movies.get(i);
-                Log.i(LOG_TAG, movie.getTitle() + "\n" + movie.getThumbnailPath() + "\n" + movie.getPlotSynopsis() + "\n" + movie.getUserRating() + "\n" + movie.getReleaseDate());
-            }
             PosterAdapter mAdapter = new PosterAdapter(PosterActivity.this, movies);
             mAdapter.setOnClickListener(PosterActivity.this);
             posters.setAdapter(mAdapter);
             movieData = movies;
-
         }
     }
 

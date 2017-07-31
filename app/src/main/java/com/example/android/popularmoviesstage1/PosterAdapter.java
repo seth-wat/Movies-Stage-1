@@ -12,10 +12,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by God on 7/28/2017.
- */
-
 public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.ViewHolder> {
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
@@ -39,8 +35,7 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.single_poster_activity, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
