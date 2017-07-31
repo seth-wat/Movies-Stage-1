@@ -80,8 +80,8 @@ public class PosterActivity extends AppCompatActivity implements PosterAdapter.I
 
         if (id == R.id.top_rated_item) {
             fetchUrl = NetworkUtils.HIGHEST_RATED_QUERY;
-            mHeaderView.setText(R.string.top_rated_header);
             if (NetworkUtils.hasInternet(this)) {
+                mHeaderView.setText(R.string.top_rated_header);
                 new FetchDataTask().execute();
             } else {
                 errorToast.show();
@@ -90,8 +90,8 @@ public class PosterActivity extends AppCompatActivity implements PosterAdapter.I
             return true;
         } else if (id == R.id.most_popular_item) {
             fetchUrl = NetworkUtils.MOST_POPULAR_QUERY;
-            mHeaderView.setText(R.string.most_popular_header);
             if (NetworkUtils.hasInternet(this)) {
+                mHeaderView.setText(R.string.most_popular_header);
                 new FetchDataTask().execute();
             } else {
                 errorToast.show();

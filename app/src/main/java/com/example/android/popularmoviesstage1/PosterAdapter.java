@@ -62,7 +62,7 @@ public class PosterAdapter extends RecyclerView.Adapter<PosterAdapter.ViewHolder
         }
 
         public void bind(final int position) {
-            Picasso.with(context).load(mData.get(position).getDetailImagePath()).into(mImageView);
+            Picasso.with(context).load(mData.get(position).getThumbnailPath()).into(mImageView);
             mImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

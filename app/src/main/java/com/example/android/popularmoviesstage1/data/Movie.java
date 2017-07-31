@@ -15,8 +15,8 @@ public class Movie {
     public Movie(String title, String thumbnailPath, String plotSynopsis, double userRating, String releaseDate) {
         this.title = title;
         if (thumbnailPath != null) {
-            this.thumbnailPath = "https://image.tmdb.org/t/p/w185" + thumbnailPath;
-            this.detailImagePath = "https://image.tmdb.org/t/p/w342" + thumbnailPath;
+            this.thumbnailPath = "https://image.tmdb.org/t/p/w342" + thumbnailPath;
+            this.detailImagePath = "https://image.tmdb.org/t/p/w780" + thumbnailPath;
         }
         this.plotSynopsis = plotSynopsis;
         this.userRating = userRating;
